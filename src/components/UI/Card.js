@@ -8,6 +8,7 @@ const StyledCard = styled.div`
   border: 1px solid #d9d9d9;
   overflow: hidden;
   cursor : pointer;
+  background-color #fff;
   transition: transform 0.3s;
   box-shadow : 5px 10px 15px -3px rgba(0, 0, 0, 0.1);
 
