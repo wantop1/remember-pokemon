@@ -1,8 +1,7 @@
-import Card from "../UI/Card";
 import PokeItem from "./PokeItem";
 
-const PokeList = ({ pokes }) => {
-  const pokeList = pokes.map((poke) => <PokeItem key={poke.name} poke={poke} />);
+const PokeList = ({ pokemons }) => {
+  const pokeList = pokemons.map((pokemon) => <PokeItem key={pokemon.name} pokemon={pokemon} />);
 
   return <ul>{pokeList}</ul>;
 };

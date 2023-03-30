@@ -1,9 +1,10 @@
-import Card from '../UI/Card';
+import Card from "../UI/Card";
 
-const PokeItem = ({ poke }) => {
+const PokeItem = ({ pokemon }) => {
   return (
     <Card>
-        {poke.name}
+      <div>{pokemon.name}</div>
+      <img alt="poke-img" src={pokemon.sprites.front_default} />
     </Card>
   );
 };
