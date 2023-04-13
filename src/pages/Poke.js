@@ -12,17 +12,27 @@ const Poke = () => {
         const pokemonNamesResponse = await getRequest("/pokemon?limit=50");
         const pokemonNames = pokemonNamesResponse.data.results;
 
-        // 각각의 포켓몬 정보를 가져오는 GET 요청
+        // 포켓몬 기본 정보를 가져오는 GET 요청
         const pokemonPromises = pokemonNames.map((pokemonName) =>
           getRequest(`/pokemon-species/${pokemonName.name}`)
         );
 
-        const pokemonResponses = await Promise.all(pokemonPromises);
-        const pokemons = pokemonResponses.map(
-          (pokemonResponse) => pokemonResponse.data
+        // 포켓몬 한글 이름을 가져오는 GET 요청
+        const pokemonSpeciesPromises = pokemonNames.map((pokemonName) =>
+          getRequest(`/pokemon/${pokemonName.name}`)
         );
 
-        setPokemons(pokemons);
+        const pokemonResponses = await Promise.all(pokemonPromises);
+        const pokemonSpeciesResponses = await Promise.all(pokemonSpeciesPromises);
+
+        const mergedData = pokemonResponses.map((response, index) => {
+          return {
+            ...response.data,
+            ...pokemonSpeciesResponses[index].data,
+          };
+        });
+
+        setPokemons(mergedData);
       } catch (error) {
         console.error(error);
       }
