@@ -1,11 +1,30 @@
 @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
 
-* { font-family: 'Spoqa Han Sans Neo', 'sans-serif'; }
+* {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
 
-html, body,ul,li,div,h1{
+html,
+body,
+ul,
+li,
+div,
+h1 {
   margin: 0;
-  padding : 0;
+  padding: 0;
+}
 
+a:link {
+  color: black;
+  text-decoration: none;
+}
+a:visited {
+  color: black;
+  text-decoration: none;
+}
+a:hover {
+  color: black;
+  text-decoration: none;
 }
 
 li {
@@ -17,6 +36,6 @@ li {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
