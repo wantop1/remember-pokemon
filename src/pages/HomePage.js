@@ -1,7 +1,7 @@
-const Main = () => {
+const HomePage = () => {
     return(
     <main className="main">Main</main>
     )
 }
 
-export default Main;
+export default HomePage;

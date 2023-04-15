@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import PokeList from "../components/Poke/PokeList";
 import { getRequest } from "../utils/api";
 
-const Poke = () => {
+const PokemonPage = () => {
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
@@ -44,4 +44,4 @@ const Poke = () => {
   return pokemons && <PokeList pokemons={pokemons} />;
 };
 
-export default Poke;
+export default PokemonPage;
