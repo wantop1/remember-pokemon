@@ -18,6 +18,11 @@ const PokemonImg = styled.img`
   margin: 0 1.5rem;
 `;
 
+const StyledLink = styled(Link)`
+  color: #000;
+  text-decoration: none;
+`;
+
 const PokeItem = ({ pokemon }) => {
   const id = "#" + pokemon.id.toString().padStart(3, "0");
   const name = pokemon.names[2].name;
@@ -32,7 +37,7 @@ const PokeItem = ({ pokemon }) => {
 
   return (
     <li>
-      <Link to={`/pokemon/${pokemon.id}`}>
+      <StyledLink to={`/pokemon/${pokemon.id}`}>
         <Card>
           <IdTypography>{id}</IdTypography>
           <NameTypography>{name}</NameTypography>
@@ -42,7 +47,7 @@ const PokeItem = ({ pokemon }) => {
             src={POKEMON_IMAGE_URL + pokemon.id + ".png"}
           />
         </Card>
-      </Link>
+      </StyledLink>
     </li>
   );
 };

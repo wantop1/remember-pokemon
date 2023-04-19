@@ -19,3 +19,5 @@ export const TYPE_COLORS = {
   FAIRY: "#DAB4D4",
   UNKNOWN: "#008080",
 };
+
+export const NAV_ACTIVE_COLOR = '#C62828'

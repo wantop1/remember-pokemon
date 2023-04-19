@@ -1,6 +1,9 @@
 import styled from "styled-components";
 
 const StyledHeader = styled.header`
+    display : flex;
+    align-items : center;
+    justify-content : space-between;
     width : 100vw;
     height : 3.5rem;
     background-color : #ef5350;
