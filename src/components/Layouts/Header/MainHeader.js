@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { HEADER_BG_COLOR } from "../../../constants/color";
 
 const StyledHeader = styled.header`
     display : flex;
@@ -6,7 +7,7 @@ const StyledHeader = styled.header`
     justify-content : space-between;
     width : 100vw;
     height : 3.5rem;
-    background-color : #ef5350;
+    background-color : ${HEADER_BG_COLOR};
     overflow : hidden;
 `
 

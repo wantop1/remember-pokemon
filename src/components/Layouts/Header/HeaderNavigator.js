@@ -7,7 +7,7 @@ const StyledNav = styled.nav`
   align-items: center;
   justify-content: center;
   height: 100%;
-  color: #fff;
+  color: #FFF;
   margin: 0 1rem;
 `;
 

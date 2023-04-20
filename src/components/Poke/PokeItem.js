@@ -4,9 +4,10 @@ import { POKEMON_IMAGE_URL } from "../../constants/image";
 import { TYPE_COLORS } from "../../constants/color";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { LIGHT_TEXT_COLOR } from "../../constants/color";
 
 const IdTypography = styled.div`
-  color: #707070;
+  color: ${LIGHT_TEXT_COLOR};
 `;
 
 const NameTypography = styled.div`
