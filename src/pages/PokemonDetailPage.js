@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { getRequest } from "../utils/api";
-import Badge from "../components/UI/Badge";
-import { TYPE_COLORS } from "../constants/color";
+import {getPokemon} from '../apis/pokemon'; 
 
 const PokemonDetailPage = () => {
   const params = useParams();
   const { id } = params;
-  const [isLoading,setIsLoading] = useState();
   const [pokemonInfo, setPokemonInfo] = useState({
     id: "",
     name: "",
@@ -16,58 +13,18 @@ const PokemonDetailPage = () => {
     description: "",
     types: [],
     stats: [],
-    image : "",
+    image: "",
   });
+
+  const [isLoading,setIsLoading] = useState(null);
 
   useEffect(() => {
     async function fetchPokemon() {
-      setIsLoading(true);
       try {
-        const pokemonResponse = await getRequest(`/pokemon/${id}`);
-        const pokemonSpeciesResponse = await getRequest(
-          `/pokemon-species/${id}`
-        );
-        const pokemonData = pokemonResponse.data;
-        const pokemonSpeciesData = pokemonSpeciesResponse.data;
-        console.log(pokemonData)
-
-        const koreaName = pokemonSpeciesData.names.find(name => name.language.name === "ko");
-        const description = pokemonSpeciesData.flavor_text_entries.find(text => text.language.name === "ko");
-        const image = pokemonData.sprites.other['official-artwork'].front_default;
-        
-        ;
-
-        const pokemonTypes = pokemonData.types.map((type) => (
-          <Badge
-            key={type.slot}
-            backgroundColor={TYPE_COLORS[type.type.name.toUpperCase()]}
-          >
-            {type.type.name.toUpperCase()}
-          </Badge>
-        ));
-
-        const pokemonStats = pokemonData.stats.map((stat) => (
-          <div key={stat.stat.name}>
-            <span>{stat.stat.name} : </span>
-            <span>{stat.base_stat}</span>
-          </div>
-        ));
-
-        setPokemonInfo((prev)=>({
-          ...prev,
-          id : "#" + id.toString().padStart(3, "0"),
-          name: koreaName?.name || pokemonSpeciesData.name,
-          weight: pokemonData.weight /10 + 'kg',
-          height: pokemonData.height /10 + 'm',
-          description: description?.flavor_text || '정보 없음',
-          types: pokemonTypes,
-          stats : pokemonStats,
-          image : image,
-        }));
-
+        setIsLoading(true);
+        const pokemonInfo = await getPokemon(id);
+        setPokemonInfo(pokemonInfo);
         setIsLoading(false);
-
-
       } catch (error) {
         console.log(`Error occurred while fetching Pokemon data: ${error}`);
       }
@@ -76,11 +33,11 @@ const PokemonDetailPage = () => {
     fetchPokemon();
   }, [id]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if(isLoading) {
+    return <div>Loading...</div>
   }
 
-  const {name,weight,height,stats,types,description,image} = pokemonInfo;
+  const { name, weight, height, stats, types, description, image } = pokemonInfo;
 
   return (
     <div>
