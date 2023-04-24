@@ -11,10 +11,16 @@ export const getPokemonTypes = (pokemonData) =>
     </Badge>
   ));
 
-export const getPokemonStats = (pokemonData) =>
-  pokemonData.stats.map((stat) => (
-    <div key={stat.stat.name}>
-      <span>{stat.stat.name} : </span>
-      <span>{stat.base_stat}</span>
-    </div>
-  ));
+export const getPokemonStats = (pokemonData) =>{
+  const labels = [];
+  const values = [];
+
+  pokemonData.stats.forEach((stat) => {
+    labels.push(stat.stat.name);
+    values.push(stat.base_stat);
+  });
+
+
+  return {values : values, labels : labels};
+}
+
