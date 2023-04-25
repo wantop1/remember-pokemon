@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import { getPokemon } from "../apis/pokemon";
 import Flex from "../components/UI/Flex";
 import StatCard from "../components/UI/StatCard";
+import GifProgress from "../components/UI/GifProgress";
+import pikachuGif from "../assets/pikachu-progress.gif";
 
 const PokemonDetailPage = () => {
   const params = useParams();
@@ -36,7 +38,16 @@ const PokemonDetailPage = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <Flex center height='100vh'>
+        <GifProgress
+          width="15rem"
+          src={pikachuGif}
+          text="Loading..."
+          fontSize="1.5rem"
+        />
+      </Flex>
+    );
   }
 
   const { name, weight, height, stats, types, description, image } =
@@ -56,7 +67,7 @@ const PokemonDetailPage = () => {
   };
 
   return (
-    <Flex center height='100vh'>
+    <Flex center height="100vh">
       <div>
         <img alt="pokemon-img" src={image} />
       </div>
