@@ -39,7 +39,7 @@ const PokeItem = ({ pokemon }) => {
   return (
     <li>
       <StyledLink to={`/pokemon/${pokemon.id}`}>
-        <Card>
+        <Card hover={true}>
           <IdTypography>{id}</IdTypography>
           <NameTypography>{name}</NameTypography>
           <div>{pokemonTypes}</div>

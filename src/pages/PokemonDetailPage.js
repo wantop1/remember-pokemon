@@ -1,25 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import {getPokemon} from '../apis/pokemon';
-
-import {
-  Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-} from 'chart.js';
-
-import { Radar } from 'react-chartjs-2';
-
-ChartJS.register(
-  RadialLinearScale,
-  PointElement,
-  LineElement,
-  Filler,
-  Tooltip,
-);
+import { getPokemon } from "../apis/pokemon";
+import Flex from "../components/UI/Flex";
+import StatCard from "../components/UI/StatCard";
 
 const PokemonDetailPage = () => {
   const params = useParams();
@@ -35,7 +18,7 @@ const PokemonDetailPage = () => {
     image: "",
   });
 
-  const [isLoading,setIsLoading] = useState(null);
+  const [isLoading, setIsLoading] = useState(null);
 
   useEffect(() => {
     async function fetchPokemon() {
@@ -52,40 +35,41 @@ const PokemonDetailPage = () => {
     fetchPokemon();
   }, [id]);
 
-  if(isLoading) {
-    return <div>Loading...</div>
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
-  const { name, weight, height, stats, types, description, image } = pokemonInfo;
+  const { name, weight, height, stats, types, description, image } =
+    pokemonInfo;
 
   const Statdata = {
     labels: stats.labels,
     datasets: [
       {
-        label : 'label',
+        label: "label",
         data: stats.values,
-        backgroundColor: 'rgba(255, 99, 132, 0.2)',
-        borderColor: 'rgba(255, 99, 132, 1)',
+        backgroundColor: "rgba(255, 99, 132, 0.2)",
+        borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
       },
     ],
   };
 
   return (
-    <div>
-      <div style={{width : '300px'}}>
-      <Radar  data={Statdata}/>
+    <Flex center height='100vh'>
+      <div>
+        <img alt="pokemon-img" src={image} />
       </div>
-        <div>
-          <div>{id}</div>
-          <div>{name}</div>
-          <div>{weight}</div>
-          <div>{height}</div>
-          <div>{types}</div>
-          <div>{description}</div>
-          <img alt="pokemon-img" src={image} />
-        </div>
-    </div>
+      <StatCard
+        id={id}
+        name={name}
+        types={types}
+        Statdata={Statdata}
+        height={height}
+        weight={weight}
+        description={description}
+      />
+    </Flex>
   );
 };
 
