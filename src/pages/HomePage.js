@@ -1,7 +1,39 @@
+import styled from "styled-components";
+import { Canvas } from "@react-three/fiber";
+import { Suspense } from "react";
+import { Environment, OrbitControls, Html } from "@react-three/drei";
+import Model from "../components/Poke/Model";
+import GifProgress from "../components/UI/GifProgress";
+import pikachuGif from "../assets/pikachu-progress.gif";
+
+const StyledMain = styled.main`
+  width : 100vw;
+  height: 100vh;
+`;
+
 const HomePage = () => {
-    return(
-    <main className="main">Main</main>
-    )
-}
+  return (
+    <StyledMain className="main">
+      <Canvas>
+        <Suspense
+          fallback={
+            <Html center>
+                <GifProgress
+                  width="15rem"
+                  src={pikachuGif}
+                  text="Loading..."
+                  fontSize="1.5rem"
+                />
+            </Html>
+          }
+        >
+          <Model />
+          <OrbitControls />
+          <Environment files="/pokemon-center.hdr" background />
+        </Suspense>
+      </Canvas>
+    </StyledMain>
+  );
+};
 
 export default HomePage;
