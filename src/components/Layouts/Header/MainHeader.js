@@ -10,13 +10,15 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100vw;
-  height: 3.5rem;
+  height: ${props=>props.isOpen ? "10rem" : "3.5rem"};
+  padding: 0 1rem;
+  box-sizing: border-box;
   background-color: ${HEADER_BG_COLOR};
   overflow: hidden;
 `;
 
-const MainHeader = ({ children }) => {
-  return <StyledHeader>{children}</StyledHeader>;
+const MainHeader = ({ isOpen,children }) => {
+  return <StyledHeader isOpen={isOpen}>{children}</StyledHeader>;
 };
 
 export default MainHeader;

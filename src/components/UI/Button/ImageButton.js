@@ -7,13 +7,13 @@ const StyledButton = styled.button`
 `;
 
 const StyledImage = styled.img`
-  padding: ${(props) => props.padding || "0.5rem"};
+  padding: ${(props) => props.padding || "0"};
   height: ${(props) => props.height || "2.5rem"};
 `;
 
-const ImageButton = ({ src, alt, height, padding }) => {
+const ImageButton = ({ src, alt, height, padding,onClick }) => {
   return (
-    <StyledButton>
+    <StyledButton onClick={onClick}>
       <StyledImage src={src} alt={alt} height={height} padding={padding} />
     </StyledButton>
   );

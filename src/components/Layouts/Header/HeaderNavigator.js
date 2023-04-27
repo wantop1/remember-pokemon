@@ -8,7 +8,9 @@ const StyledNav = styled.nav`
   justify-content: center;
   height: 100%;
   color: #FFF;
-  margin: 0 1rem;
+  @media screen and (max-width: 1024px) {
+    display : none;
+  }
 `;
 
 const StylenNavLink = styled(NavLink)`

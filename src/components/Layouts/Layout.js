@@ -1,18 +1,23 @@
 import MainHeader from "./Header/MainHeader";
 import HeaderNavigator from "./Header/HeaderNavigator";
 import { Outlet } from "react-router-dom";
-import { POKEMON_LOGO_URL } from "../../constants/image";
-import ImageButton from "../UI/ImageButton";
-import { Link } from "react-router-dom";
+import MenuButton from "../UI/Button/MenuButton";
+import LogoButton from "../UI/Button/LogoButton";
+import { useState } from "react";
 
 const Layout = () => {
+  const [openMenu,setOpenMenu] = useState(false);
+
+  const MenuOpenHandler = ()=> {
+    console.log('menu Click');
+  }
+
   return (
     <>
-      <MainHeader>
-        <Link to="/">
-          <ImageButton src={POKEMON_LOGO_URL} alt="logo"/>
-        </Link>
-        <HeaderNavigator/>
+      <MainHeader isOpen={openMenu}>
+        <MenuButton onClick={MenuOpenHandler}/>
+        <LogoButton />
+        <HeaderNavigator />
       </MainHeader>
       <Outlet />
     </>
