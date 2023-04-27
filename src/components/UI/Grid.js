@@ -3,6 +3,7 @@ import styled from "styled-components";
 const StyledGrid = styled.ul`
   display: grid;
   padding : 1rem 0;
+  margin-top : 3.5rem;
   place-items : center;
   overflow : auto;
 
