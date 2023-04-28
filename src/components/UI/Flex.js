@@ -10,9 +10,10 @@ const StyledFlex = styled.div`
   background-color: ${(props) => props.backgroundColor};
 `;
 
-const Flex = ({ width, height, margin, justifyContent, alignItems, backgroundColor, children }) => {
+const Flex = ({ flexDirection, width, height, margin, justifyContent, alignItems, backgroundColor, children }) => {
   return (
     <StyledFlex
+      flexDirection={flexDirection}
       width={width}
       height={height}
       margin={margin}

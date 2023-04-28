@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 import Flex from "./Flex";
 import ruler from "../../assets/ruler.svg";
 import scale from "../../assets/scale.svg";
-import {LIGHT_TEXT_COLOR} from '../../constants/color';
+import { LIGHT_TEXT_COLOR } from "../../constants/color";
 
 import {
   Chart as ChartJS,
@@ -17,7 +17,6 @@ import {
 import { Radar } from "react-chartjs-2";
 
 ChartJS.register(RadialLinearScale, PointElement, LineElement, Filler, Tooltip);
-
 
 const StyledSpan = styled.span`
   margin: 0 0.5rem;
@@ -36,6 +35,25 @@ const NameTypography = styled.div`
   font-size: 1.5rem;
 `;
 
+const MobileImageContainer = styled.div`
+position : absolute;
+right: 50%;
+transform: translateX(50%);
+top : -4rem;
+
+`;
+
+const MobileImage = styled.img`
+width : 5rem;
+background-color : #FFF;
+border : 2px solid #D9D9D9;
+border-radius: 50%;
+
+@media screen and (min-width: 1024px) {
+  display : none;
+}
+`;
+
 const StatCard = ({
   id,
   name,
@@ -44,13 +62,17 @@ const StatCard = ({
   height,
   weight,
   description,
+  src,
 }) => {
   return (
-    <Card width="25rem">
+    <Card width="25rem" margin="0 2rem" position='relative'>
+      <MobileImageContainer>
+        <MobileImage src={src} alt="pokemon-img" />
+      </MobileImageContainer>
       <Flex>
         <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>
         <NameTypography>{name}</NameTypography>
-        <Flex margin='0 0 0 auto'>{types}</Flex>
+        <Flex margin="0 0 0 auto">{types}</Flex>
       </Flex>
 
       <Flex height="70%">

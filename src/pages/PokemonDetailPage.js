@@ -1,11 +1,18 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getPokemon } from "../apis/pokemon";
+import styled from 'styled-components';
 import Flex from "../components/UI/Flex";
 import StatCard from "../components/UI/StatCard";
 import GifProgress from "../components/UI/GifProgress";
 import pikachuGif from "../assets/pikachu-progress.gif";
 
+
+const DesktopImage = styled.img`
+@media screen and (max-width: 1024px) {
+  display : none;
+}
+`
 const PokemonDetailPage = () => {
   const params = useParams();
   const { id } = params;
@@ -67,10 +74,8 @@ const PokemonDetailPage = () => {
   };
 
   return (
-    <Flex height="100vh">
-      <div>
-        <img alt="pokemon-img" src={image} />
-      </div>
+    <Flex height='100vh' margin='3.5rem 0'>
+      <DesktopImage alt="pokemon-img" src={image}/>
       <StatCard
         id={id}
         name={name}
@@ -79,6 +84,7 @@ const PokemonDetailPage = () => {
         height={height}
         weight={weight}
         description={description}
+        src={image}
       />
     </Flex>
   );
