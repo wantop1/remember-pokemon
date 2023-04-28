@@ -6,11 +6,9 @@ const StyledHeader = styled.header`
   top: 0;
   left: 0;
   z-index: 999;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  display : flex;
   width: 100vw;
-  height: ${props=>props.isOpen ? "10rem" : "3.5rem"};
+  height : 3.5rem;
   padding: 0 1rem;
   box-sizing: border-box;
   background-color: ${HEADER_BG_COLOR};

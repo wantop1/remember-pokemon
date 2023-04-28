@@ -50,19 +50,19 @@ const StatCard = ({
       <Flex>
         <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>
         <NameTypography>{name}</NameTypography>
-        <Flex center margin='0 0 0 auto'>{types}</Flex>
+        <Flex margin='0 0 0 auto'>{types}</Flex>
       </Flex>
 
       <Flex height="70%">
         <Radar data={Statdata} />
       </Flex>
 
-      <Flex center>
-        <Flex center>
+      <Flex>
+        <Flex>
           <img src={ruler} alt="ruler" />
           <StyledSpan>{height}</StyledSpan>
         </Flex>
-        <Flex center>
+        <Flex>
           <img src={scale} alt="scale" />
           <StyledSpan>{weight}</StyledSpan>
         </Flex>

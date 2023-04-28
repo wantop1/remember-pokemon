@@ -1,23 +1,43 @@
-import MainHeader from "./Header/MainHeader";
-import HeaderNavigator from "./Header/HeaderNavigator";
+import { useState } from "react";
 import { Outlet } from "react-router-dom";
+
+import Flex from "../UI/Flex";
+import DesktopNavigator from "./Header/DesktopNavigator";
+import MobileNavigator from "./Header/MobileNavigator";
+import MainHeader from "./Header/MainHeader";
 import MenuButton from "../UI/Button/MenuButton";
 import LogoButton from "../UI/Button/LogoButton";
-import { useState } from "react";
+
+import { HEADER_BG_COLOR } from "../../constants/color";
 
 const Layout = () => {
-  const [openMenu,setOpenMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
 
-  const MenuOpenHandler = ()=> {
-    console.log('menu Click');
-  }
+  const MenuOpenToggle = () => {
+    setOpenMenu((prevState) => !prevState);
+  };
+
+  const MenuCloseHandler = () => {
+    setOpenMenu(false);
+  };
 
   return (
     <>
-      <MainHeader isOpen={openMenu}>
-        <MenuButton onClick={MenuOpenHandler}/>
+      <MainHeader>
+        <Flex>
+          <MenuButton onClick={MenuOpenToggle} />
+          <MobileNavigator isOpened={openMenu} close={MenuCloseHandler} />
+        </Flex>
+
         <LogoButton />
-        <HeaderNavigator />
+
+        <Flex
+          justifyContent="flex-end"
+          width="100vw"
+          backgroundColor={HEADER_BG_COLOR}
+        >
+          <DesktopNavigator />
+        </Flex>
       </MainHeader>
       <Outlet />
     </>

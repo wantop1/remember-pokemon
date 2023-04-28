@@ -26,7 +26,7 @@ const StylenNavLink = styled(NavLink)`
   }
 `;
 
-const HeaderNavigator = () => {
+const DesktopNavigator = () => {
   return (
     <StyledNav>
       <StylenNavLink to="/">Home</StylenNavLink>
@@ -37,4 +37,4 @@ const HeaderNavigator = () => {
   );
 };
 
-export default HeaderNavigator;
+export default DesktopNavigator;

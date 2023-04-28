@@ -26,7 +26,7 @@ const PokemonPage = () => {
 
   if (isLoading) {
     return (
-      <Flex center height='100vh'>
+      <Flex height='100vh'>
         <GifProgress
           width="15rem"
           src={pikachuGif}
