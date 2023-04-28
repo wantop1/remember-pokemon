@@ -3,7 +3,7 @@ import Card from "../UI/Card";
 import Flex from "./Flex";
 import ruler from "../../assets/ruler.svg";
 import scale from "../../assets/scale.svg";
-import { LIGHT_TEXT_COLOR } from "../../constants/color";
+import { LIGHT_TEXT_COLOR,CARD_BORDER_COLOR } from "../../constants/color";
 
 import {
   Chart as ChartJS,
@@ -36,22 +36,21 @@ const NameTypography = styled.div`
 `;
 
 const MobileImageContainer = styled.div`
-position : absolute;
-right: 50%;
-transform: translateX(50%);
-top : -4rem;
-
+  position: absolute;
+  right: 50%;
+  transform: translateX(50%);
+  top: -4rem;
 `;
 
 const MobileImage = styled.img`
-width : 5rem;
-background-color : #FFF;
-border : 2px solid #D9D9D9;
-border-radius: 50%;
+  width: 5rem;
+  background-color: #fff;
+  border: ${`1px solid ${CARD_BORDER_COLOR}`};
+  border-radius: 50%;
 
-@media screen and (min-width: 1024px) {
-  display : none;
-}
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
 `;
 
 const StatCard = ({
@@ -65,7 +64,7 @@ const StatCard = ({
   src,
 }) => {
   return (
-    <Card width="25rem" margin="0 2rem" position='relative'>
+    <Card width="25rem" margin="0 2rem" position="relative">
       <MobileImageContainer>
         <MobileImage src={src} alt="pokemon-img" />
       </MobileImageContainer>

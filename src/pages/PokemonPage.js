@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PokeList from "../components/Poke/PokeList";
-import { getPokemonList } from "../apis/pokemon";
+import { getRandomPokemonList } from "../apis/pokemon";
 import Flex from "../components/UI/Flex";
 import pikachuGif from "../assets/pikachu-progress.gif";
 import GifProgress from "../components/UI/GifProgress";
@@ -13,7 +13,7 @@ const PokemonPage = () => {
     async function fetchPokemonList() {
       try {
         setIsLoading(true);
-        const data = await getPokemonList();
+        const data = await getRandomPokemonList();
         setPokemons(data);
         setIsLoading(false);
       } catch (error) {

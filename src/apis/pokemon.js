@@ -1,5 +1,6 @@
 import { getRequest } from "../utils/api";
 import { getPokemonTypes, getPokemonStats } from "../utils/pokemon";
+import { MAX_POKEMON_NUMBER } from "../constants/number";
 
 export const getPokemonList = async () => {
   try {
@@ -12,6 +13,41 @@ export const getPokemonList = async () => {
 
     const pokemonSpeciesPromises = pokemonNames.map((pokemonName) =>
       getRequest(`/pokemon/${pokemonName.name}`)
+    );
+
+    const pokemonResponses = await Promise.all(pokemonPromises);
+    const pokemonSpeciesResponses = await Promise.all(pokemonSpeciesPromises);
+
+    const mergedData = pokemonResponses.map((response, index) => {
+      return {
+        ...response.data,
+        ...pokemonSpeciesResponses[index].data,
+      };
+    });
+
+    return mergedData;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+};
+
+export const getRandomPokemonList = async () => {
+  try {
+    const pokemonIds = [];
+    while (pokemonIds.length < 50) {
+      const pokemonId = Math.floor(Math.random() * MAX_POKEMON_NUMBER) + 1;
+      if (!pokemonIds.includes(pokemonId)) {
+        pokemonIds.push(pokemonId);
+      }
+    }
+
+    const pokemonPromises = pokemonIds.map((pokemonId) =>
+      getRequest(`/pokemon-species/${pokemonId}`)
+    );
+
+    const pokemonSpeciesPromises = pokemonIds.map((pokemonId) =>
+      getRequest(`/pokemon/${pokemonId}`)
     );
 
     const pokemonResponses = await Promise.all(pokemonPromises);
