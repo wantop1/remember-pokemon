@@ -3,6 +3,8 @@ import Layout from "./components/Layouts/Layout";
 import HomePage from './pages/HomePage';
 import PokemonPage from "./pages/PokemonPage";
 import PokemonDetailPage from "./pages/PokemonDetailPage";
+import About from "./pages/About";
+import Etc from './pages/Etc';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
           <Route index element={<PokemonPage />} />
           <Route path=":id" element={<PokemonDetailPage />} />
         </Route>
+        <Route path="about" element={<About />}/>
+        <Route path="etc" element={<Etc/>}/>
       </Route>
     </Routes>
   );
