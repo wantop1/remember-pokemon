@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Canvas } from "@react-three/fiber";
 import { Suspense } from "react";
 import { Environment, OrbitControls, Html } from "@react-three/drei";
-import Model from "../components/Poke/Model";
+import Model from "../components/Pokemon/Model";
 import GifProgress from "../components/UI/GifProgress";
 import pikachuGif from "../assets/pikachu-progress.gif";
 
