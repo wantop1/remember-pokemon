@@ -20,8 +20,8 @@ export const TYPE_COLORS = {
   UNKNOWN: "#008080",
 };
 
-export const LIGHT_TEXT_COLOR = '#707070'
-export const CARD_BORDER_COLOR = '#D9D9D9'
-export const HEADER_BG_COLOR = '#EF5350'
-export const NAV_ACTIVE_COLOR = '#C62828'
-
+export const LIGHT_TEXT_COLOR = "#707070";
+export const CARD_BORDER_COLOR = "#D9D9D9";
+export const HEADER_BG_COLOR = "#EF5350";
+export const NAV_ACTIVE_COLOR = "#C62828";
+export const BACKDROP_COLOR = "#000000bf";

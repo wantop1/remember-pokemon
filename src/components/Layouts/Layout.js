@@ -7,6 +7,7 @@ import MobileNavigator from "./Header/MobileNavigator";
 import MainHeader from "./Header/MainHeader";
 import MenuButton from "../UI/Button/MenuButton";
 import LogoButton from "../UI/Button/LogoButton";
+import BasicInput from "../UI/Input/BasicInput";
 
 import { HEADER_BG_COLOR } from "../../constants/color";
 
@@ -30,6 +31,8 @@ const Layout = () => {
         </Flex>
 
         <LogoButton />
+
+        <BasicInput/>
 
         <Flex
           justifyContent="flex-end"

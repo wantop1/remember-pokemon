@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import PokeList from "../components/Poke/PokeList";
+import PokeList from "../components/Pokemon/PokeList";
 import { getRandomPokemonList } from "../apis/pokemon";
 import Flex from "../components/UI/Flex";
 import pikachuGif from "../assets/pikachu-progress.gif";
