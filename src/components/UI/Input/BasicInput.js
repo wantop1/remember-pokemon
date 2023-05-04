@@ -2,12 +2,11 @@ import styled from "styled-components";
 
 const StyledInput = styled.input`
   width: 100%;
-  margin : 0.5rem;
+  max-width: 25rem;
   padding: 0.5rem 0.5rem;
-  text-align: left;
   border-radius: 0.375rem;
   font-size: 0.875rem;
-  line-height: 1.25rem;
+
   border: none;
 
   &:focus {
@@ -15,8 +14,8 @@ const StyledInput = styled.input`
   }
 `;
 
-const BasicInput = () => {
-  return <StyledInput />
+const BasicInput = ({ value, onChange, onBlur }) => {
+  return <StyledInput value={value} onChange={onChange} onBlur={onBlur} />;
 };
 
 export default BasicInput;

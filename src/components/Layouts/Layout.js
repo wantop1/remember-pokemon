@@ -7,7 +7,7 @@ import MobileNavigator from "./Header/MobileNavigator";
 import MainHeader from "./Header/MainHeader";
 import MenuButton from "../UI/Button/MenuButton";
 import LogoButton from "../UI/Button/LogoButton";
-import BasicInput from "../UI/Input/BasicInput";
+import PokemonSearchInput from "../UI/Input/PokemonSearchInput";
 
 import { HEADER_BG_COLOR } from "../../constants/color";
 
@@ -32,7 +32,7 @@ const Layout = () => {
 
         <LogoButton />
 
-        <BasicInput/>
+        <PokemonSearchInput/>
 
         <Flex
           justifyContent="flex-end"
