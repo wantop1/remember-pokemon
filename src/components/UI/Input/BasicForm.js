@@ -4,6 +4,11 @@ const StyledForm = styled.form`
   display: flex;
   align-items: center;
   margin: 0 1rem;
+  position : relative;
+
+  @media screen and (max-width: 1024px) {
+    display : none;
+  }
 `;
 
 const BasicForm = ({ onSubmit, children }) => {

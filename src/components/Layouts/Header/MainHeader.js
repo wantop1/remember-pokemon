@@ -12,7 +12,6 @@ const StyledHeader = styled.header`
   padding: 0 1rem;
   box-sizing: border-box;
   background-color: ${HEADER_BG_COLOR};
-  overflow: hidden;
 `;
 
 const MainHeader = ({ isOpen,children }) => {

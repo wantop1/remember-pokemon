@@ -1,23 +1,62 @@
 import useInput from "../../../hooks/use-input";
 import BasicInput from "./BasicInput";
 import BasicForm from "./BasicForm";
+import { getPokemon } from "../../../apis/pokemon";
+import { useState } from "react";
+import SearchResult from "./SearchResult";
 
 const PokemonSearchInput = () => {
-  const { value, valueChangeHandler, inputBlurHandler,reset} = useInput();
+  const [isLoading, setIsLoading] = useState(null);
+  const [isError,setIsError] = useState(null);
+  const [filteredPokemon, setFilteredPokemon] = useState({});
+  const {
+    value,
+    isFocused,
+    isTouched,
+    valueChangeHandler,
+    inputFocusHandler,
+    inputBlurHandler,
+    reset,
+  } = useInput();
 
-  const onSubmitHander = (event) => {
+  const fetchPokemon = async (id) => {
+    if(id.trim().length === 0) return;
+    
+    try {
+      setIsLoading(true);
+      const pokemonInfo = await getPokemon(id);
+      setFilteredPokemon(pokemonInfo);
+      setIsLoading(false);
+      setIsError(null);
+    } catch (error) {
+        setIsError(error.response.status);
+        return null;
+    }
+  };
+
+  const onEnterHander = (event) => {
     event.preventDefault();
-
-    console.log(value);
-    reset();
+    valueChangeHandler(event);
+    fetchPokemon(event.target.value);
   };
 
   return (
-    <BasicForm value={value} onSubmit={onSubmitHander}>
+    <BasicForm>
       <BasicInput
         value={value}
-        onChange={valueChangeHandler}
+        onChange={onEnterHander}
+        onFocus={inputFocusHandler}
         onBlur={inputBlurHandler}
+      />
+      <SearchResult
+        id={filteredPokemon.id}
+        name={filteredPokemon.name}
+        image={filteredPokemon.image}
+        isFocused={isFocused}
+        isTouched={isTouched}
+        isError={isError}
+        reset={reset}
+        value={value}
       />
     </BasicForm>
   );

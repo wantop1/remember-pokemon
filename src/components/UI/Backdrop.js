@@ -7,7 +7,7 @@ const StyledBackdrop = styled.div`
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 1000;
+  z-index: 999;
   margin: 0 0 3.5rem 0;
   background: ${BACKDROP_COLOR};
 `;

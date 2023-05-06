@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 const StyledInput = styled.input`
   width: 100%;
   max-width: 25rem;
@@ -14,8 +13,8 @@ const StyledInput = styled.input`
   }
 `;
 
-const BasicInput = ({ value, onChange, onBlur }) => {
-  return <StyledInput value={value} onChange={onChange} onBlur={onBlur} />;
+const BasicInput = ({ value, onChange, onFocus,onBlur }) => {
+  return <StyledInput value={value} onChange={onChange} onFocus={onFocus} onBlur={onBlur}/>;
 };
 
 export default BasicInput;
