@@ -5,7 +5,7 @@ import { getPokemon } from "../../../apis/pokemon";
 import { useState } from "react";
 import SearchResult from "./SearchResult";
 
-const PokemonSearchInput = () => {
+const PokemonSearchInput = ({mobile,closeMenu}) => {
   const [isLoading, setIsLoading] = useState(null);
   const [isError,setIsError] = useState(null);
   const [filteredPokemon, setFilteredPokemon] = useState({});
@@ -41,7 +41,7 @@ const PokemonSearchInput = () => {
   };
 
   return (
-    <BasicForm>
+    <BasicForm mobile={mobile}>
       <BasicInput
         value={value}
         onChange={onEnterHander}
@@ -57,6 +57,7 @@ const PokemonSearchInput = () => {
         isError={isError}
         reset={reset}
         value={value}
+        closeMenu={closeMenu}
       />
     </BasicForm>
   );

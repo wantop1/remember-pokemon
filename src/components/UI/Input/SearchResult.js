@@ -54,9 +54,15 @@ const SearchResult = ({
   isFocused,
   isTouched,
   isError,
-  reset,
+  reset:resetInputState,
   value,
+  closeMenu
 }) => {
+
+  const reset = ()=>{
+    resetInputState();
+    closeMenu();
+  }
   return (
     <StyledSearchResult
       id={id}
