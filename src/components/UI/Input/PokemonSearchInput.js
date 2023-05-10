@@ -1,9 +1,11 @@
+import ReactDOM from 'react-dom';
 import useInput from "../../../hooks/use-input";
 import BasicInput from "./BasicInput";
 import BasicForm from "./BasicForm";
 import { getPokemon } from "../../../apis/pokemon";
 import { useState } from "react";
 import SearchResult from "./SearchResult";
+import Backdrop from '../Backdrop';
 
 const PokemonSearchInput = ({mobile,closeMenu}) => {
   const [isLoading, setIsLoading] = useState(null);
@@ -42,6 +44,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
 
   return (
     <BasicForm mobile={mobile}>
+      {!mobile && isFocused && ReactDOM.createPortal(<Backdrop onClick={reset}/>,document.getElementById("backdrop-root")) }
       <BasicInput
         value={value}
         onChange={onEnterHander}

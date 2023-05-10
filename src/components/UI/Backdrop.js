@@ -12,8 +12,8 @@ const StyledBackdrop = styled.div`
   background: ${BACKDROP_COLOR};
 `;
 
-const Backdrop = () => {
-  return <StyledBackdrop />;
+const Backdrop = ({onClick}) => {
+  return <StyledBackdrop onClick={onClick}/>;
 };
 
 export default Backdrop;

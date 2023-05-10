@@ -32,7 +32,7 @@ const Layout = () => {
 
         <LogoButton />
 
-        <PokemonSearchInput/>
+        <PokemonSearchInput closeMenu={MenuCloseHandler}/>
 
         <Flex
           justifyContent="flex-end"
