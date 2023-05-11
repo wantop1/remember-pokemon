@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { LIGHT_TEXT_COLOR } from "../../../constants/color";
 import { CARD_BORDER_COLOR } from "../../../constants/color";
+import basicSpinner from '../../../assets/basic-spinner.gif';
+import GifProgress from "../GifProgress";
 
 const StyledSearchResult = styled.div`
   align-items: center;
@@ -15,7 +17,10 @@ const StyledSearchResult = styled.div`
   border: none;
   border-radius: 0.375rem;
   ziindex: 1000;
-  display: ${(props) => (props.isFocused && props.value.length > 0 && props.isError!==404 ? "block" : "none")};
+  display: ${(props) =>
+    props.isFocused && props.value.length > 0 && props.isError !== 404
+      ? "block"
+      : "none"};
 `;
 
 const StyledLink = styled(Link)`
@@ -40,11 +45,11 @@ const NameTypography = styled.span`
 `;
 
 const PokemonImg = styled.img`
-border-radius: 9999px;
-width: 2rem;
-height: 2rem;
-flex-shrink: 0;
-border: solid 0.5px #D9D9D9;
+  border-radius: 9999px;
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  border: solid 0.5px #d9d9d9;
 `;
 
 const SearchResult = ({
@@ -54,15 +59,15 @@ const SearchResult = ({
   isFocused,
   isTouched,
   isError,
-  reset:resetInputState,
+  isLoading,
+  reset: resetInputState,
   value,
-  closeMenu
+  closeMenu,
 }) => {
-
-  const reset = ()=>{
+  const reset = () => {
     resetInputState();
     closeMenu();
-  }
+  };
   return (
     <StyledSearchResult
       id={id}
@@ -71,14 +76,13 @@ const SearchResult = ({
       isTouched={isTouched}
       isError={isError}
     >
-      <StyledLink to={`/pokemon/${id}`} onClick={reset}>
-        <PokemonImg
-          src={image}
-          alt="pokemon-image"
-        />
-        <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>
-        <NameTypography>{name}</NameTypography>
-      </StyledLink>
+      {isLoading ?? true ? <GifProgress width='2rem' src={basicSpinner}/> : (
+        <StyledLink to={`/pokemon/${id}`} onClick={reset}>
+          <PokemonImg src={image} alt="pokemon-image" />
+          <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>
+          <NameTypography>{name}</NameTypography>
+        </StyledLink>
+      )}
     </StyledSearchResult>
   );
 };

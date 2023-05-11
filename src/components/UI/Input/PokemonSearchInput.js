@@ -28,7 +28,9 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
       setIsLoading(true);
       const pokemonInfo = await getPokemon(id);
       setFilteredPokemon(pokemonInfo);
-      setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 500);
       setIsError(null);
     } catch (error) {
         setIsError(error.response.status);
@@ -36,10 +38,13 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
     }
   };
 
-  const onEnterHander = (event) => {
+  const onFetchHandler = (event) => {
     event.preventDefault();
     valueChangeHandler(event);
-    fetchPokemon(event.target.value);
+    setTimeout(() => {
+      fetchPokemon(event.target.value);
+    }, 500);
+
   };
 
   return (
@@ -47,7 +52,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
       {!mobile && isFocused && ReactDOM.createPortal(<Backdrop onClick={reset}/>,document.getElementById("backdrop-root")) }
       <BasicInput
         value={value}
-        onChange={onEnterHander}
+        onChange={onFetchHandler}
         onFocus={inputFocusHandler}
         onBlur={inputBlurHandler}
       />
@@ -58,6 +63,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
         isFocused={isFocused}
         isTouched={isTouched}
         isError={isError}
+        isLoading={isLoading}
         reset={reset}
         value={value}
         closeMenu={closeMenu}

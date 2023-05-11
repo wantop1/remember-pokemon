@@ -12,7 +12,7 @@ const StyledImage = styled.img`
 `;
 
 const StyledText = styled.p`
-  font-size: ${(props) => props.fontSize};
+  font-size: ${(props) => props.fontSize || 0};
 `;
 
 const GifProgress = ({ src, width, height, text, fontSize }) => {
