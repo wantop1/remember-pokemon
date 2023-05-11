@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StyledForm = styled.form`
+const StyledForm = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
