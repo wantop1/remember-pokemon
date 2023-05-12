@@ -25,3 +25,5 @@ export const CARD_BORDER_COLOR = "#D9D9D9";
 export const HEADER_BG_COLOR = "#EF5350";
 export const NAV_ACTIVE_COLOR = "#C62828";
 export const BACKDROP_COLOR = "#000000bf";
+export const STAT_BG_COLOR = "#ff638433";
+export const STAT_BORDER_COLOR = "#ff6384";

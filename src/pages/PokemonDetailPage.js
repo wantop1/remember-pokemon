@@ -6,6 +6,8 @@ import Flex from "../components/UI/Flex";
 import StatCard from "../components/UI/StatCard";
 import GifProgress from "../components/UI/GifProgress";
 import pikachuGif from "../assets/pikachu-progress.gif";
+import { STAT_BG_COLOR } from "../constants/color";
+import { STAT_BORDER_COLOR } from "../constants/color";
 
 
 const DesktopImage = styled.img`
@@ -66,8 +68,8 @@ const PokemonDetailPage = () => {
       {
         label: "label",
         data: stats.values,
-        backgroundColor: "rgba(255, 99, 132, 0.2)",
-        borderColor: "rgba(255, 99, 132, 1)",
+        backgroundColor: STAT_BG_COLOR,
+        borderColor: STAT_BORDER_COLOR,
         borderWidth: 1,
       },
     ],
