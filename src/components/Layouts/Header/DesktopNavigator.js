@@ -1,22 +1,24 @@
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 import { NAV_ACTIVE_COLOR } from "../../../constants/color";
+import { DESKTOP_BREAKPOINT_NUMBER } from "../../../constants/number";
 
 const StyledNav = styled.nav`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  color: #FFF;
-  @media screen and (max-width: 1023px) {
-    display : none;
+  display: none;
+
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: #fff;
   }
 `;
 
 const StylenNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
-  color: #FFF;
+  color: #fff;
   text-decoration: none;
   padding: 0 1rem;
   height: 100%;

@@ -3,7 +3,8 @@ import Card from "../UI/Card";
 import Flex from "./Flex";
 import ruler from "../../assets/ruler.svg";
 import scale from "../../assets/scale.svg";
-import { LIGHT_TEXT_COLOR,CARD_BORDER_COLOR } from "../../constants/color";
+import { LIGHT_TEXT_COLOR, CARD_BORDER_COLOR } from "../../constants/color";
+import { DESKTOP_BREAKPOINT_NUMBER } from "../../constants/number";
 
 import {
   Chart as ChartJS,
@@ -48,7 +49,7 @@ const MobileImage = styled.img`
   border: ${`1px solid ${CARD_BORDER_COLOR}`};
   border-radius: 50%;
 
-  @media screen and (min-width: 1023px) {
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
     display: none;
   }
 `;

@@ -1,14 +1,15 @@
 import styled from "styled-components";
+import { DESKTOP_BREAKPOINT_NUMBER } from "../../../constants/number";
 
 const StyledForm = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  margin: 0 1rem;
-  position: relative;
+  display : none;
 
-  @media screen and (max-width: 1023px) {
-    display: none;
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin: 0 1rem;
+    position: relative;
   }
 `;
 
@@ -18,21 +19,17 @@ const StyledFormMobile = styled(StyledForm)`
     align-items: center;
     justify-content: center;
     padding: 1rem 0;
-    margin: 0;
+    position: relative;
+    margin: 0 1rem;
   }
 
   & > input {
-    width: 100%;
     margin: 0 0.5rem;
-    max-width: 35rem;
   }
 
   & > div {
+    width : 100%;
     left: auto;
-    max-width: 35rem;
-  }
-  @media screen and (max-width: 1024px) {
-    display: block;
   }
 `;
 

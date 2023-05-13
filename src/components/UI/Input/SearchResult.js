@@ -16,7 +16,7 @@ const StyledSearchResult = styled.div`
   background: #fff;
   border: none;
   border-radius: 0.375rem;
-  ziindex: 1000;
+  z-index: 1000;
   display: ${(props) =>
     props.isFocused && props.value.length > 0 && props.isError !== 404
       ? "block"

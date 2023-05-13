@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import ImageButton from "./ImageButton";
 import menu from "../../../assets/menu.svg";
+import { DESKTOP_BREAKPOINT_NUMBER } from "../../../constants/number";
 
 const StyledContainer = styled.div`
-@media screen and (min-width: 1023px) {
-    display : none;
+display : block;
+  
+@media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
+  display : none;
   }
 `;
 

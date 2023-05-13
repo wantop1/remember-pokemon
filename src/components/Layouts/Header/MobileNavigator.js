@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { HEADER_BG_COLOR } from "../../../constants/color";
 import { NAV_ACTIVE_COLOR } from "../../../constants/color";
 import PokemonSearchInput from "../../UI/Input/PokemonSearchInput";
+import { DESKTOP_BREAKPOINT_NUMBER } from "../../../constants/number";
 
 const StyledNav = styled.nav`
   display: ${(props) => (props.isOpened ? "block" : "none")};
@@ -12,8 +13,8 @@ const StyledNav = styled.nav`
   left: 0;
   top: 3.5rem;
 
-  @media screen and (min-width: 1024px) {
-    display: none;
+  @media screen and (min-width: $${DESKTOP_BREAKPOINT_NUMBER}px) {
+    display: none !important;
   }
 `;
 

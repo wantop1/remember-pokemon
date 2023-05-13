@@ -8,11 +8,13 @@ import GifProgress from "../components/UI/GifProgress";
 import pikachuGif from "../assets/pikachu-progress.gif";
 import { STAT_BG_COLOR } from "../constants/color";
 import { STAT_BORDER_COLOR } from "../constants/color";
-
+import { DESKTOP_BREAKPOINT_NUMBER } from "../constants/number";
 
 const DesktopImage = styled.img`
-@media screen and (max-width: 1023px) {
-  display : none;
+display : none;
+
+@media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
+  display : inline-block;
 }
 `
 const PokemonDetailPage = () => {
