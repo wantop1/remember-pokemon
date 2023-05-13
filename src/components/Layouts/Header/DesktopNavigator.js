@@ -8,7 +8,7 @@ const StyledNav = styled.nav`
   justify-content: center;
   height: 100%;
   color: #FFF;
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     display : none;
   }
 `;

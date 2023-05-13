@@ -8,7 +8,7 @@ const StyledContainer = styled.div`
   height : 100%;
   align-items : center;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);

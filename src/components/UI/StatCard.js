@@ -48,7 +48,7 @@ const MobileImage = styled.img`
   border: ${`1px solid ${CARD_BORDER_COLOR}`};
   border-radius: 50%;
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 1023px) {
     display: none;
   }
 `;

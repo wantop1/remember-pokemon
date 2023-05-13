@@ -7,7 +7,7 @@ const StyledForm = styled.div`
   margin: 0 1rem;
   position: relative;
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 1023px) {
     display: none;
   }
 `;

@@ -3,7 +3,7 @@ import ImageButton from "./ImageButton";
 import menu from "../../../assets/menu.svg";
 
 const StyledContainer = styled.div`
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1023px) {
     display : none;
   }
 `;

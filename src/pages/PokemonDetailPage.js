@@ -11,7 +11,7 @@ import { STAT_BORDER_COLOR } from "../constants/color";
 
 
 const DesktopImage = styled.img`
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1023px) {
   display : none;
 }
 `
