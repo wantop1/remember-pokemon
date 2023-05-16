@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
 import PokeList from "../components/Pokemon/PokeList";
 import { getRandomPokemonList } from "../apis/pokemon";
-import Flex from "../components/UI/Flex";
-import pikachuGif from "../assets/pikachu-progress.gif";
-import GifProgress from "../components/UI/GifProgress";
+import Grid from "../components/UI/Grid";
+import PokemonItemSkeleton from "../components/UI/Skeleton/PokemonItemSkeleton";
+
+import { FETCH_LIMIT_NUMBER } from "../constants/number";
+
+const skeletonList = new Array(FETCH_LIMIT_NUMBER)
+  .fill(null)
+  .map((_, index) => <PokemonItemSkeleton key={index} />);
 
 const PokemonPage = () => {
   const [pokemons, setPokemons] = useState([]);
@@ -14,8 +19,10 @@ const PokemonPage = () => {
       try {
         setIsLoading(true);
         const data = await getRandomPokemonList();
-        setPokemons(data);
-        setIsLoading(false);
+        setTimeout(() => {
+          setPokemons(data);
+          setIsLoading(false);
+        }, 500);
       } catch (error) {
         console.error(error);
       }
@@ -24,20 +31,7 @@ const PokemonPage = () => {
     fetchPokemonList();
   }, []);
 
-  if (isLoading) {
-    return (
-      <Flex height='100vh'>
-        <GifProgress
-          width="15rem"
-          src={pikachuGif}
-          text="Loading..."
-          fontSize="1.5rem"
-        />
-      </Flex>
-    );
-  }
-
-  return pokemons && <PokeList pokemons={pokemons} />;
+  return isLoading ? <Grid>{skeletonList}</Grid> : <PokeList pokemons={pokemons} />;
 };
 
 export default PokemonPage;

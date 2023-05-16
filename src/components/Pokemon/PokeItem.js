@@ -16,6 +16,7 @@ const NameTypography = styled.div`
 
 const PokemonImg = styled.img`
   width: 15rem;
+  height: 15rem;
   margin: 0 1.5rem;
 `;
 
@@ -27,6 +28,7 @@ const StyledLink = styled(Link)`
 const PokeItem = ({ pokemon }) => {
   const id = "#" + pokemon.id.toString().padStart(3, "0");
   const name = pokemon.names[2].name;
+  const image = pokemon.sprites.other["official-artwork"].front_default;
   const pokemonTypes = pokemon.types.map((type) => (
     <Badge
       key={type.slot}
@@ -43,10 +45,7 @@ const PokeItem = ({ pokemon }) => {
           <IdTypography>{id}</IdTypography>
           <NameTypography>{name}</NameTypography>
           <div>{pokemonTypes}</div>
-          <PokemonImg
-            alt="pokemon-img"
-            src={POKEMON_IMAGE_URL + pokemon.id + ".png"}
-          />
+          <PokemonImg alt="pokemon-img" src={image} />
         </Card>
       </StyledLink>
     </li>

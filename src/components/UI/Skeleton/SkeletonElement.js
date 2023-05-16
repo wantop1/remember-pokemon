@@ -14,7 +14,7 @@ const skeletonLoading = keyframes`
 
 const StyledSkeletonElement = styled.div`
   width: ${(props) => props.width || "16rem"};
-  height: ${(props) => props.width || "1rem"};
+  height: ${(props) => props.height || "1rem"};
   border-radius: ${(props) => props.borderRadius || "0.5rem"};
   margin: ${(props) => props.margin || "0.5rem"};
   background-color: #E8E8E8;

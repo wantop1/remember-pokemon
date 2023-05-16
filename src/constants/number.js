@@ -1,4 +1,5 @@
 export const MAX_POKEMON_NUMBER = 905;
+export const FETCH_LIMIT_NUMBER = 25;
 
 export const MOBILE_BREAKPOINT_NUMBER = 480;
 export const TABLET_BREAKPOINT_NUMBER = 768;

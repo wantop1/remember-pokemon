@@ -2,9 +2,11 @@ import { getRequest } from "../utils/api";
 import { getPokemonTypes, getPokemonStats } from "../utils/pokemon";
 import { MAX_POKEMON_NUMBER } from "../constants/number";
 
+import { FETCH_LIMIT_NUMBER } from "../constants/number";
+
 export const getPokemonList = async () => {
   try {
-    const pokemonNamesResponse = await getRequest("/pokemon?limit=50");
+    const pokemonNamesResponse = await getRequest(`/pokemon?limit=${FETCH_LIMIT_NUMBER}`);
     const pokemonNames = pokemonNamesResponse.data.results;
 
     const pokemonPromises = pokemonNames.map((pokemonName) =>
