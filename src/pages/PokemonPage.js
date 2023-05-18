@@ -19,10 +19,8 @@ const PokemonPage = () => {
       try {
         setIsLoading(true);
         const data = await getRandomPokemonList();
-        setTimeout(() => {
           setPokemons(data);
           setIsLoading(false);
-        }, 500);
       } catch (error) {
         console.error(error);
       }
