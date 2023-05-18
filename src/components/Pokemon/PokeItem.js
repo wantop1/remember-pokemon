@@ -1,6 +1,5 @@
 import Card from "../UI/Card";
 import Badge from "../UI/Badge";
-import { POKEMON_IMAGE_URL } from "../../constants/image";
 import { TYPE_COLORS } from "../../constants/color";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
