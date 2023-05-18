@@ -29,7 +29,7 @@ const PokemonPage = () => {
     fetchPokemonList();
   }, []);
 
-  return isLoading ? <Grid>{skeletonList}</Grid> : <PokeList pokemons={pokemons} />;
+  return isLoading ? <Grid>{skeletonList}</Grid> : pokemons && <PokeList pokemons={pokemons} />;
 };
 
 export default PokemonPage;
