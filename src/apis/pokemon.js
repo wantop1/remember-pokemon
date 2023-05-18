@@ -37,7 +37,7 @@ export const getPokemonList = async () => {
 export const getRandomPokemonList = async () => {
   try {
     const pokemonIds = [];
-    while (pokemonIds.length < 50) {
+    while (pokemonIds.length < FETCH_LIMIT_NUMBER) {
       const pokemonId = Math.floor(Math.random() * MAX_POKEMON_NUMBER) + 1;
       if (!pokemonIds.includes(pokemonId)) {
         pokemonIds.push(pokemonId);
