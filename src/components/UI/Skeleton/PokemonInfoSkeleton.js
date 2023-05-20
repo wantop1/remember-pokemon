@@ -5,17 +5,13 @@ import Flex from "../Flex";
 const PokemonInfoSkeleton = () => {
   return (
     <Card width="25rem" margin="0 2rem" position="relative">
-      <Flex justifyContent='space-between'>
         <Flex>
         <SkeletonElement width="5rem" height="1.5rem"/>
-        <SkeletonElement width="5rem" height="1.5rem"/> 
-        </Flex>
-        <Flex>
+        <SkeletonElement width="5rem" height="1.5rem"/>
         <SkeletonElement width="5rem" height="1.5rem" />
         <SkeletonElement width="5rem" height="1.5rem" /> 
         </Flex>
-      </Flex>
-
+        
       <Flex>
         <SkeletonElement width="80%" height="20rem" />
       </Flex>

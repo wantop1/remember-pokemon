@@ -12,7 +12,7 @@ const skeletonLoading = keyframes`
   }
 `;
 
-const StyledSkeletonElement = styled.div`
+export const StyledSkeletonElement = styled.div`
   width: ${(props) => props.width || "16rem"};
   height: ${(props) => props.height || "1rem"};
   border-radius: ${(props) => props.borderRadius || "0.5rem"};
