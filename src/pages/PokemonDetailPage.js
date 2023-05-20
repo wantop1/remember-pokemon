@@ -4,11 +4,10 @@ import { getPokemon } from "../apis/pokemon";
 import styled from 'styled-components';
 import Flex from "../components/UI/Flex";
 import StatCard from "../components/UI/StatCard";
-import GifProgress from "../components/UI/GifProgress";
-import pikachuGif from "../assets/pikachu-progress.gif";
 import { STAT_BG_COLOR } from "../constants/color";
 import { STAT_BORDER_COLOR } from "../constants/color";
 import { DESKTOP_BREAKPOINT_NUMBER } from "../constants/number";
+import PokemonInfoSkeleton from "../components/UI/Skeleton/PokemonInfoSkeleton";
 
 const DesktopImage = styled.img`
 display : none;
@@ -39,7 +38,9 @@ const PokemonDetailPage = () => {
         setIsLoading(true);
         const pokemonInfo = await getPokemon(id);
         setPokemonInfo(pokemonInfo);
-        setIsLoading(false);
+        setTimeout(()=>{
+          setIsLoading(false);
+        },3000)
       } catch (error) {
         console.log(`Error occurred while fetching Pokemon data: ${error}`);
       }
@@ -51,12 +52,7 @@ const PokemonDetailPage = () => {
   if (isLoading) {
     return (
       <Flex height='100vh'>
-        <GifProgress
-          width="15rem"
-          src={pikachuGif}
-          text="Loading..."
-          fontSize="1.5rem"
-        />
+          <PokemonInfoSkeleton/>
       </Flex>
     );
   }
