@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import {useEffect } from "react";
 import PokeList from "../components/Pokemon/PokeList";
 import { getRandomPokemonList } from "../apis/pokemon";
 import Grid from "../components/UI/Grid";
@@ -6,28 +6,31 @@ import PokemonItemSkeleton from "../components/UI/Skeleton/PokemonItemSkeleton";
 
 import { FETCH_LIMIT_NUMBER } from "../constants/number";
 
-const skeletonList = new Array(FETCH_LIMIT_NUMBER)
-  .fill(null)
-  .map((_, index) => <PokemonItemSkeleton key={index} />);
+import { useSelector,useDispatch } from "react-redux";
+import { pokemonActions } from "../store/pokemon";
+
+const skeletonList = Array.from({ length: FETCH_LIMIT_NUMBER }, (_, index) => (
+  <PokemonItemSkeleton key={index} />
+));
 
 const PokemonPage = () => {
-  const [pokemons, setPokemons] = useState([]);
-  const [isLoading, setIsLoading] = useState(null);
-
+  const dispatch = useDispatch();
+  const {pokemons,isLoading} = useSelector(state=>state.pokemon);
+  
   useEffect(() => {
     async function fetchPokemonList() {
       try {
-        setIsLoading(true);
+        dispatch(pokemonActions.setIsLoading(true));
         const data = await getRandomPokemonList();
-          setPokemons(data);
-          setIsLoading(false);
+        dispatch(pokemonActions.setPokomons(data));
+        dispatch(pokemonActions.setIsLoading(false));
       } catch (error) {
         console.error(error);
       }
     }
 
     fetchPokemonList();
-  }, []);
+  }, [dispatch]);
 
   return isLoading ? <Grid>{skeletonList}</Grid> : pokemons && <PokeList pokemons={pokemons} />;
 };
