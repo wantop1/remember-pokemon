@@ -4,17 +4,21 @@ import { MAX_POKEMON_NUMBER } from "../constants/number";
 
 import { FETCH_LIMIT_NUMBER } from "../constants/number";
 
-export const getPokemonList = async () => {
+export const getPokemonList = async (offset) => {
   try {
-    const pokemonNamesResponse = await getRequest(`/pokemon?limit=${FETCH_LIMIT_NUMBER}`);
+    const pokemonNamesResponse = await getRequest(`/pokemon?offset=${offset}&limit=${FETCH_LIMIT_NUMBER}`);
     const pokemonNames = pokemonNamesResponse.data.results;
 
-    const pokemonPromises = pokemonNames.map((pokemonName) =>
-      getRequest(`/pokemon-species/${pokemonName.name}`)
+    const pokemonPromises = pokemonNames.map((pokemonName) =>{
+      const id = pokemonName.url.split("/").filter(Boolean).pop();
+      return getRequest(`/pokemon-species/${id}`)
+    }
     );
 
-    const pokemonSpeciesPromises = pokemonNames.map((pokemonName) =>
-      getRequest(`/pokemon/${pokemonName.name}`)
+    const pokemonSpeciesPromises = pokemonNames.map((pokemonName) =>{
+      const id = pokemonName.url.split("/").filter(Boolean).pop();
+      return getRequest(`/pokemon/${id}`)
+    }
     );
 
     const pokemonResponses = await Promise.all(pokemonPromises);
