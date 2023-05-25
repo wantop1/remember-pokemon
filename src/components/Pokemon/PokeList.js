@@ -1,12 +1,14 @@
 import PokeItem from "./PokeItem";
-import Grid from "../UI/Grid";
+import { useSelector } from "react-redux";
 
-const PokeList = ({ pokemons }) => {
+const PokeList = () => {
+  const { pokemons } = useSelector((state) => state.pokemon);
+  
   const pokeList = pokemons.map((pokemon) => (
     <PokeItem key={pokemon.id} pokemon={pokemon} />
   ));
 
-  return <Grid>{pokeList}</Grid>;
+  return pokeList;
 };
 
 export default PokeList;

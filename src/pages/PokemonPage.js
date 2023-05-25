@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
 
 const skeletonList = Array.from({ length: FETCH_LIMIT_NUMBER }, (_, index) => (
-  <PokemonItemSkeleton key={index} />
+  <PokemonItemSkeleton key={`skeleton-${index}`} />
 ));
 
 const PokemonPage = () => {
@@ -30,15 +30,13 @@ const PokemonPage = () => {
     }
   }, [dispatch, offset, pokemons.length]);
 
-  if (isLoading && offset === 0) {
-    return <Grid>{skeletonList}</Grid>;
-  }
 
   return (
-    <>
-      <PokeList pokemons={pokemons} />
+    <Grid>
+      <PokeList/>
+      {isLoading && skeletonList}
       <div ref={observerRef} />
-    </>
+    </Grid>
   );
 };
 
