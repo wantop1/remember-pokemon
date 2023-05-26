@@ -7,8 +7,10 @@ import GifProgress from "../components/UI/GifProgress";
 import pikachuGif from "../assets/pikachu-progress.gif";
 
 const StyledMain = styled.main`
+  position : absolute;
   width : 100vw;
   height: 100vh;
+  z-index : 900;
 `;
 
 const HomePage = () => {

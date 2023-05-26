@@ -12,6 +12,7 @@ const StyledNav = styled.nav`
   position: fixed;
   left: 0;
   top: 3.5rem;
+  z-index : 999;
 
   @media screen and (min-width: $${DESKTOP_BREAKPOINT_NUMBER}px) {
     display: none !important;
