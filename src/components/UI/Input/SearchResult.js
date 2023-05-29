@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { LIGHT_TEXT_COLOR } from "../../../constants/color";
 import { CARD_BORDER_COLOR } from "../../../constants/color";
-import basicSpinner from '../../../assets/basic-spinner.gif';
+import basicSpinner from "../../../assets/basic-spinner.gif";
 import GifProgress from "../GifProgress";
 
 const StyledSearchResult = styled.div`
@@ -18,7 +18,7 @@ const StyledSearchResult = styled.div`
   border-radius: 0.375rem;
   z-index: 1000;
   display: ${(props) =>
-    props.isFocused && props.value.length > 0 && props.isError !== 404
+    props.isFocused && props.value.length > 0 && !props.isError
       ? "block"
       : "none"};
 `;
@@ -76,7 +76,9 @@ const SearchResult = ({
       isTouched={isTouched}
       isError={isError}
     >
-      {isLoading ?? true ? <GifProgress width='2rem' src={basicSpinner}/> : (
+      {isLoading ?? true ? (
+        <GifProgress width="2rem" src={basicSpinner} />
+      ) : (
         <StyledLink to={`/pokemon/${id}`} onClick={reset}>
           <PokemonImg src={image} alt="pokemon-image" />
           <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>

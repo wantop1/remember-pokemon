@@ -2,15 +2,15 @@ import ReactDOM from 'react-dom';
 import useInput from "../../../hooks/use-input";
 import BasicInput from "./BasicInput";
 import BasicForm from "./BasicForm";
-import { getPokemon } from "../../../apis/pokemon";
-import { useState } from "react";
+import { fetchPokemon } from '../../../store/pokemon/filteredPokemonSlice';
 import SearchResult from "./SearchResult";
 import Backdrop from '../Backdrop';
+import { useSelector,useDispatch } from 'react-redux';
 
 const PokemonSearchInput = ({mobile,closeMenu}) => {
-  const [isLoading, setIsLoading] = useState(null);
-  const [isError,setIsError] = useState(null);
-  const [filteredPokemon, setFilteredPokemon] = useState({});
+  const dispatch = useDispatch();
+  const {filteredPokemon,isLoading,error} = useSelector((state)=>state.filteredPokemon);
+
   const {
     value,
     isFocused,
@@ -21,28 +21,12 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
     reset,
   } = useInput();
 
-  const fetchPokemon = async (id) => {
-    if(id.trim().length === 0) return;
-    
-    try {
-      setIsLoading(true);
-      const pokemonInfo = await getPokemon(id);
-      setFilteredPokemon(pokemonInfo);
-      setTimeout(() => {
-        setIsLoading(false);
-      }, 500);
-      setIsError(null);
-    } catch (error) {
-        setIsError(error.response.status);
-        return null;
-    }
-  };
-
-  const onFetchHandler = (event) => {
+  const onFetchHandler = (event) => {    
     event.preventDefault();
     valueChangeHandler(event);
+
     setTimeout(() => {
-      fetchPokemon(event.target.value);
+      dispatch(fetchPokemon(event.target.value));
     }, 500);
 
   };
@@ -62,7 +46,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
         image={filteredPokemon.image}
         isFocused={isFocused}
         isTouched={isTouched}
-        isError={isError}
+        isError={error}
         isLoading={isLoading}
         reset={reset}
         value={value}

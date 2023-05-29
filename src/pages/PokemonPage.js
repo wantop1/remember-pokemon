@@ -3,7 +3,7 @@ import PokeList from "../components/Pokemon/PokeList";
 import Grid from "../components/UI/Grid";
 import PokemonItemSkeleton from "../components/UI/Skeleton/PokemonItemSkeleton";
 import { FETCH_LIMIT_NUMBER } from "../constants/number";
-import { fetchPokemonList } from "../store/pokemon";
+import { fetchPokemonList } from "../store/pokemon/pokemonListSlice";
 import { useSelector, useDispatch } from "react-redux";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
 
@@ -13,7 +13,7 @@ const skeletonList = Array.from({ length: FETCH_LIMIT_NUMBER }, (_, index) => (
 
 const PokemonPage = () => {
   const dispatch = useDispatch();
-  const { pokemons, isLoading, offset } = useSelector((state) => state.pokemon);
+  const { pokemons, isLoading, offset } = useSelector((state) => state.pokemonList);
 
   const intersectionHandler = (entries) => {
     const target = entries[0];

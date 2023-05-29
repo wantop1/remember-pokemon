@@ -14,8 +14,8 @@ const StyledNav = styled.nav`
   top: 3.5rem;
   z-index : 999;
 
-  @media screen and (min-width: $${DESKTOP_BREAKPOINT_NUMBER}px) {
-    display: none !important;
+  @media screen and (min-width: ${DESKTOP_BREAKPOINT_NUMBER}px) {
+    display : none;
   }
 `;
 

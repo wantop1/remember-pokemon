@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPokemonList} from "../apis/pokemon";
-import { FETCH_LIMIT_NUMBER } from "../constants/number";
+import { getPokemonList} from "../../apis/pokemon";
+import { FETCH_LIMIT_NUMBER } from "../../constants/number";
 
 export const fetchPokemonList = createAsyncThunk(
   "pokemon/fetchPokemonList",
@@ -10,10 +10,10 @@ export const fetchPokemonList = createAsyncThunk(
   }
 );
 
-const initialState = { pokemons: [],offset:0, isLoading: null, error: null };
+const initialState = { pokemons: [], offset:0, isLoading: null, error: null };
 
-const pokemonSlice = createSlice({
-  name: "pokemon",
+const pokemonListSlice = createSlice({
+  name: "pokemonList",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -33,6 +33,6 @@ const pokemonSlice = createSlice({
   },
 });
 
-export const pokemonActions = pokemonSlice.actions;
+export const pokemonListActions = pokemonListSlice.actions;
 
-export default pokemonSlice.reducer;
+export default pokemonListSlice.reducer;
