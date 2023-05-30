@@ -1,25 +1,31 @@
 import ReactDOM from 'react-dom';
-import useInput from "../../../hooks/use-input";
 import BasicInput from "./BasicInput";
 import BasicForm from "./BasicForm";
 import { fetchPokemon } from '../../../store/pokemon/filteredPokemonSlice';
 import SearchResult from "./SearchResult";
 import Backdrop from '../Backdrop';
 import { useSelector,useDispatch } from 'react-redux';
+import { filteredPokemonActions } from '../../../store/pokemon/filteredPokemonSlice';
 
 const PokemonSearchInput = ({mobile,closeMenu}) => {
   const dispatch = useDispatch();
-  const {filteredPokemon,isLoading,error} = useSelector((state)=>state.filteredPokemon);
+  const {filteredPokemon,isLoading,error,inputValue,isFocused,isTouched} = useSelector((state)=>state.filteredPokemon);
 
-  const {
-    value,
-    isFocused,
-    isTouched,
-    valueChangeHandler,
-    inputFocusHandler,
-    inputBlurHandler,
-    reset,
-  } = useInput();
+  const valueChangeHandler = (event) => {
+    dispatch(filteredPokemonActions.input(event.target.value));
+  }
+
+  const inputFocusHandler = () => {
+    dispatch(filteredPokemonActions.focus());
+  }
+
+  const inputBlurHandler = () => {
+    dispatch(filteredPokemonActions.blur());
+  }
+
+  const reset = () => {
+    dispatch(filteredPokemonActions.reset());
+  }
 
   const onFetchHandler = (event) => {    
     event.preventDefault();
@@ -35,7 +41,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
     <BasicForm mobile={mobile}>
       {!mobile && isFocused && ReactDOM.createPortal(<Backdrop onClick={reset}/>,document.getElementById("backdrop-root")) }
       <BasicInput
-        value={value}
+        value={inputValue}
         onChange={onFetchHandler}
         onFocus={inputFocusHandler}
         onBlur={inputBlurHandler}
@@ -49,7 +55,7 @@ const PokemonSearchInput = ({mobile,closeMenu}) => {
         isError={error}
         isLoading={isLoading}
         reset={reset}
-        value={value}
+        value={inputValue}
         closeMenu={closeMenu}
       />
     </BasicForm>

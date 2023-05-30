@@ -9,12 +9,35 @@ export const fetchPokemon = createAsyncThunk(
   }
 );
 
-const initialState = { filteredPokemon: {}, isLoading: null, error: null };
+const initialState = {
+  filteredPokemon: {},
+  isLoading: null,
+  error: null,
+  inputValue: "",
+  isFocused: false,
+  isTouched: false,
+};
 
 const filteredPokemonSlice = createSlice({
   name: "filteredPokemon",
   initialState,
-  reducers: {},
+  reducers: {
+    input: (state, action) => {
+      state.inputValue = action.payload;
+    },
+    focus: (state) => {
+      state.isFocused = true;
+    },
+    blur: (state) => {
+      state.isTouched = true;
+    },
+    reset: (state) => {
+      state.inputValue = "";
+      state.isFocused = false;
+      state.isTouched = false;
+    },
+  },
+
   extraReducers: (builder) => {
     builder
       .addCase(fetchPokemon.pending, (state) => {
