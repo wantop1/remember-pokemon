@@ -33,7 +33,7 @@ const IdTypography = styled.div`
 `;
 
 const NameTypography = styled.div`
-  font-size: 1.5rem;
+  font-size: 1rem;
 `;
 
 const MobileImageContainer = styled.div`
