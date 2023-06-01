@@ -4,6 +4,8 @@ import { TYPE_COLORS } from "../../constants/color";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { LIGHT_TEXT_COLOR } from "../../constants/color";
+import { useDispatch } from "react-redux";
+import { scrollSliceActions } from "../../store/user/scrollSlice";
 
 const IdTypography = styled.div`
   color: ${LIGHT_TEXT_COLOR};
@@ -25,6 +27,9 @@ const StyledLink = styled(Link)`
 `;
 
 const PokeItem = ({ pokemon }) => {
+
+  const dispatch = useDispatch();
+
   const id = "#" + pokemon.id.toString().padStart(3, "0");
   const name = pokemon.names[2].name;
   const image = pokemon.sprites.other["official-artwork"].front_default;
@@ -39,7 +44,7 @@ const PokeItem = ({ pokemon }) => {
 
   return (
     <li>
-      <StyledLink to={`/pokemon/${pokemon.id}`}>
+      <StyledLink to={`/pokemon/${pokemon.id}`} onClick={()=>dispatch(scrollSliceActions.reset())}>
         <Card hover={true}>
           <IdTypography>{id}</IdTypography>
           <NameTypography>{name}</NameTypography>

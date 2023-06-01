@@ -9,6 +9,7 @@ import { STAT_BORDER_COLOR } from "../constants/color";
 import { DESKTOP_BREAKPOINT_NUMBER } from "../constants/number";
 import PokemonInfoSkeleton from "../components/UI/Skeleton/PokemonInfoSkeleton";
 import {StyledSkeletonElement} from "../components/UI/Skeleton/SkeletonElement";
+import { useSelector } from "react-redux";
 
 const DesktopImage = styled.img`
   display: none;
@@ -28,6 +29,8 @@ const DesktopImageSkeleton = styled(StyledSkeletonElement)`
 const PokemonDetailPage = () => {
   const params = useParams();
   const { id } = params;
+  const { scrollY } = useSelector((state)=>state.scroll);
+
   const [pokemonInfo, setPokemonInfo] = useState({
     id: "",
     name: "",
@@ -40,7 +43,7 @@ const PokemonDetailPage = () => {
   });
 
   const [isLoading, setIsLoading] = useState(null);
-
+  
   useEffect(() => {
     async function fetchPokemon() {
       try {
@@ -57,6 +60,10 @@ const PokemonDetailPage = () => {
 
     fetchPokemon();
   }, [id]);
+
+  useEffect(() => {
+    window.scrollTo(0,scrollY);
+  }, [scrollY]);
 
   const { name, weight, height, stats, types, description, image } =
     pokemonInfo;

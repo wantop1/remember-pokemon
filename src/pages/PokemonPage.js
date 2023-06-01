@@ -6,6 +6,7 @@ import { FETCH_LIMIT_NUMBER } from "../constants/number";
 import { fetchPokemonList } from "../store/pokemon/pokemonListSlice";
 import { useSelector, useDispatch } from "react-redux";
 import useIntersectionObserver from "../hooks/use-intersection-observer";
+import {scrollSliceActions} from '../store/user/scrollSlice';
 
 const skeletonList = Array.from({ length: FETCH_LIMIT_NUMBER }, (_, index) => (
   <PokemonItemSkeleton key={`skeleton-${index}`} />
@@ -14,11 +15,14 @@ const skeletonList = Array.from({ length: FETCH_LIMIT_NUMBER }, (_, index) => (
 const PokemonPage = () => {
   const dispatch = useDispatch();
   const { pokemons, isLoading, offset } = useSelector((state) => state.pokemonList);
+  const { pokemonListScrollY } = useSelector((state)=>state.scroll);
 
   const intersectionHandler = (entries) => {
     const target = entries[0];
     if (target.isIntersecting && offset) {
       dispatch(fetchPokemonList(offset));
+      dispatch(scrollSliceActions.setScrollY(window.scrollY));
+      dispatch(scrollSliceActions.setPokemonListScrollY(window.scrollY));
     }
   };
 
@@ -26,9 +30,15 @@ const PokemonPage = () => {
 
   useEffect(() => {
     if (pokemons.length === 0) {
-      dispatch(fetchPokemonList(offset));
+      dispatch(fetchPokemonList(0));
     }
-  }, [dispatch, offset, pokemons.length]);
+
+  }, [dispatch, pokemons.length]);
+
+  useEffect(() => {
+    window.scrollTo(0,pokemonListScrollY);
+    dispatch(scrollSliceActions.setScrollY(window.scrollY));
+  }, [dispatch,pokemonListScrollY]);
 
 
   return (

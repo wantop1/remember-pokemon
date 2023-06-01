@@ -4,6 +4,8 @@ import { LIGHT_TEXT_COLOR } from "../../../constants/color";
 import { CARD_BORDER_COLOR } from "../../../constants/color";
 import basicSpinner from "../../../assets/basic-spinner.gif";
 import GifProgress from "../GifProgress";
+import { useDispatch } from "react-redux";
+import { scrollSliceActions } from "../../../store//user/scrollSlice";
 
 const StyledSearchResult = styled.div`
   align-items: center;
@@ -68,6 +70,8 @@ const SearchResult = ({
     resetInputState();
     closeMenu();
   };
+
+  const dispatch = useDispatch();
   return (
     <StyledSearchResult
       id={id}
@@ -79,7 +83,13 @@ const SearchResult = ({
       {isLoading ?? true ? (
         <GifProgress width="2rem" src={basicSpinner} />
       ) : (
-        <StyledLink to={`/pokemon/${id}`} onClick={reset}>
+        <StyledLink 
+        to={`/pokemon/${id}`} 
+        onClick={()=>{
+          reset();
+          dispatch(scrollSliceActions.reset())
+        }}
+        >
           <PokemonImg src={image} alt="pokemon-image" />
           <IdTypography>{"#" + id.toString().padStart(3, "0")}</IdTypography>
           <NameTypography>{name}</NameTypography>
